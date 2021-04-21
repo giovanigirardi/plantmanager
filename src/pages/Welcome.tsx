@@ -7,6 +7,8 @@ import {
   StyleSheet,
   Dimensions,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
 import Constants from "expo-constants";
 import { Feather } from "@expo/vector-icons";
 
@@ -17,7 +19,13 @@ import fonts from "../styles/fonts";
 
 const statusBarHeight = Constants.statusBarHeight;
 
-const Welcome = () => {
+const Welcome: React.FC = () => {
+  const navigation = useNavigation();
+
+  function handleStart() {
+    navigation.navigate("UserIdentification");
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>
@@ -31,7 +39,11 @@ const Welcome = () => {
         sempre que precisar.
       </Text>
 
-      <TouchableOpacity style={styles.button} activeOpacity={0.7}>
+      <TouchableOpacity
+        style={styles.button}
+        activeOpacity={0.7}
+        onPress={handleStart}
+      >
         <Text>
           <Feather name="chevron-right" style={styles.buttonIcon} />
         </Text>
